@@ -1,5 +1,7 @@
+// Minifier: https://javascript-minifier.com/
+
 (function($) {
-  var debug = false;
+  var debug = true;
 
   if (debug) {
     console.log('Splice Sounds Shortcuts Extension Loaded');
@@ -29,12 +31,15 @@
     };
 
     var downloadAllSelectedSamples = function() {
-      $('[data-qa="download-multiple"]')[0].dispatchEvent(clickEvent);
-      if (debug) { console.log('downloadAllSelectedSamples clicked') }
+      let $downloadMultiple = $('[data-qa="download-multiple"]');
+      $downloadMultiple.click();
+      if (debug) { console.log('downloadAllSelectedSamples clicked', $downloadMultiple[0]) }
     };
 
-    var stopPlay = function() {
-      $findInActiveRow('.fa-stop')[0].dispatchEvent(clickEvent);
+    var stopPlay = function () {
+      $stopEl = $findInActiveRow('[icon="stop-solid"]');
+      $stopEl.click();
+      if (debug) { console.log('clicked stop', $stopEl[0]) }
     };
 
     // Handle `shift + alt + KEY` key shortcuts
@@ -54,7 +59,9 @@
           break;
         case 65: // shift + alt + A
           // Deselect all
-          $('[data-qa="deselect-all"]')[0].dispatchEvent(clickEvent);
+          $deselectAllEl = $('[data-qa="deselect-all"]');
+          $deselectAllEl.click();
+          if (debug) { console.log('clicked deselect all', $deselectAllEl[0]) }
           break;
       }
     }
@@ -65,7 +72,9 @@
           // Play
           stopPlay(); // stop in case a clip is still playing
           setTimeout(function() {
-            $findInActiveRow('.fa-play-circle')[0].dispatchEvent(clickEvent);
+            let $playEl = $findInActiveRow('[icon="play-circle"]')
+            $playEl.click()
+            if (debug) { console.log('clicked play', $playEl[0]) }
           }, 20);
           break;
         case 83: // shift + S
@@ -76,19 +85,23 @@
         case 76: // shift + L
           if (debug) { console.log("Like event: shift + L"); }
           // Love sample
-          $findInActiveRow('.add-icon')[0].dispatchEvent(clickEvent);
-          if (debug) { console.log('clicked like', $findInActiveRow('.add-icon')[0]) }
+          let $likeEl = $findInActiveRow('.sounds-sample-like')[0]
+          if ($likeEl) $likeEl.dispatchEvent(clickEvent);
+          if (debug) { console.log('clicked like', $likeEl) }
           break;
         case 68: // shift + D
           if (debug) { console.log("Download event: shift + D"); }
           // Download sample
-          $findInActiveRow('.download-icon')[0].dispatchEvent(clickEvent);
-          if (debug) { console.log('clicked download', $findInActiveRow('.download-icon')[0]) }
+          let $downloadEl = $findInActiveRow('[data-qa="download-icon"]')
+          $downloadEl.click();
+          if (debug) { console.log('clicked download', $downloadEl[0]) }
           break;
         case 65: // shift + A
           if (debug) { console.log("Select sample: shift + A"); }
           // Select sample
-          $findInActiveRow('input[type="checkbox"]')[0].dispatchEvent(clickEvent);
+          let $selectRowEl = $findInActiveRow('input[type="checkbox')[0]
+          if ($selectRowEl) $selectRowEl.dispatchEvent(clickEvent);
+          if (debug) { console.log('clicked select row checkbox', $selectRowEl) }
           break;
       }
     }

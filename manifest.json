@@ -22,5 +22,5 @@
    "description": "Adds helpful keyboard shortcuts for navigating through the Splice Sounds web interface",
    "manifest_version": 2,
    "name": "Splice Sounds Shortcuts",
-   "version": "0.1.1"
+   "version": "0.1.5"
 }
