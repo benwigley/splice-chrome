@@ -36,7 +36,7 @@
          }
       }
 
-      var stopPlay = function () {
+      var stop = function () {
          let stopEl = findInActiveRow('[icon="stop-solid"]')
          stopEl.trigger('click')
          if (debug) {
@@ -79,26 +79,12 @@
          var clickEvent = new Event('click')
 
          switch (e.keyCode) {
-            case 80: // shift + P
-               if (debug) {
-                  console.log('Play event: shift + P')
-               }
-               // Play
-               stopPlay() // stop in case a clip is still playing
-               setTimeout(function () {
-                  let $playEl = findInActiveRow('[icon="play-circle"]')
-                  $playEl.trigger('click')
-                  if (debug) {
-                     console.log('clicked play', $playEl[0])
-                  }
-               }, 20)
-               break
             case 83: // shift + S
                if (debug) {
                   console.log('Stop event: shift + S')
                }
-               // Stop play
-               stopPlay()
+               // Stop
+               stop()
                break
             case 76: // shift + L
                if (debug) {
