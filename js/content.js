@@ -1,5 +1,5 @@
 ;(function ($) {
-   var debug = true
+   var debug = false
 
    console.log('Splice Sounds Shortcuts Extension Loaded')
 
@@ -75,7 +75,12 @@
                break
          }
       } else if (e.shiftKey) {
-         console.log('Event Key:', e.key, e)
+         if (debug) {
+            // As Event.keyCode is deprecated,
+            // we should use Event.key instead
+            console.log('Event Key:', e.key, e)
+         }
+
          var clickEvent = new Event('click')
 
          switch (e.keyCode) {
