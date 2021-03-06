@@ -1,9 +1,7 @@
 ;(function ($) {
    var debug = true
 
-   if (debug) {
-      console.log('Splice Sounds Shortcuts Extension Loaded')
-   }
+   console.log('Splice Sounds Shortcuts Extension Loaded')
 
    $(window).on('keydown', function (e) {
       if ($('input:focus').length > 0) {
@@ -29,7 +27,7 @@
 
       var downloadAllSelectedSamples = function () {
          let downloadMultiple = $('[data-qa="download-multiple"]')
-         downloadMultiple.click()
+         downloadMultiple.trigger('click')
          if (debug) {
             console.log(
                'downloadAllSelectedSamples clicked',
@@ -70,7 +68,7 @@
             case 65: // shift + alt + A
                // Deselect all
                let deselectAllEl = $('[data-qa="deselect-all"]')
-               deselectAllEl.click()
+               deselectAllEl.trigger('click')
                if (debug) {
                   console.log('clicked deselect all', deselectAllEl[0])
                }
@@ -83,13 +81,13 @@
          switch (e.keyCode) {
             case 80: // shift + P
                if (debug) {
-                  console.log('Play event::: shift + P')
+                  console.log('Play event: shift + P')
                }
                // Play
                stopPlay() // stop in case a clip is still playing
                setTimeout(function () {
                   let $playEl = findInActiveRow('[icon="play-circle"]')
-                  $playEl.click()
+                  $playEl.trigger('click')
                   if (debug) {
                      console.log('clicked play', $playEl[0])
                   }
@@ -110,7 +108,7 @@
                let $likeEl = findInActiveRow('.sounds-sample-like')[0]
                if ($likeEl) $likeEl.dispatchEvent(clickEvent)
                if (debug) {
-                  console.log('clicked like', $likeEl)
+                  console.log('Clicked like', $likeEl)
                }
                break
             case 68: // shift + D
@@ -119,7 +117,7 @@
                }
                // Download sample
                let $downloadEl = findInActiveRow('[data-qa="download-icon"]')
-               $downloadEl.click()
+               $downloadEl.trigger('click')
                if (debug) {
                   console.log('clicked download', $downloadEl[0])
                }
@@ -132,7 +130,7 @@
                let $selectRowEl = findInActiveRow('input[type="checkbox')[0]
                if ($selectRowEl) $selectRowEl.dispatchEvent(clickEvent)
                if (debug) {
-                  console.log('clicked select row checkbox', $selectRowEl)
+                  console.log('Clicked select row checkbox', $selectRowEl)
                }
                break
          }
